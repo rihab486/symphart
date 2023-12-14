@@ -1,10 +1,15 @@
 <?php
 namespace App\Controller ;
+
+use App\Entity\Article;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\VarDumper\Cloner\AbstractCloner;
+use Doctrine\ORM\EntityManagerInterface;
+
+
+
 
 class ArticleController extends AbstractController {
     /**
@@ -18,4 +23,19 @@ class ArticleController extends AbstractController {
 
         return $this ->render('articles/index.html.twig', array('articles' => $articles));
     }
+
+ /**
+     * @Route("/article/save")
+     */
+     public function save(EntityManagerInterface $entityManager): Response
+     {
+         $article = new Article();
+         $article->setTitle('it web');
+         $article->setBody('body of article');
+ 
+         $entityManager->persist($article);
+         $entityManager->flush();
+ 
+         return new Response('Saved new product with id ' . $article->getId());
+     }
 }
