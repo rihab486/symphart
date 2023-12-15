@@ -7,3 +7,17 @@ index:
     path: /
     # the controller value has the format 'controller_class::method_name'
     controller: App\Controller\ArticleController::index
+save:
+    path: /article/save
+    # the controller value has the format 'controller_class::method_name'
+    controller: App\Controller\ArticleController::save
+
+show:
+    path: /article/{id}
+    # the controller value has the format 'controller_class::method_name'
+    controller: App\Controller\ArticleController::show
+
+new:
+    path: /article/new
+    # the controller value has the format 'controller_class::method_name'
+    controller: App\Controller\ArticleController::new
